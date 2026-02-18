@@ -1,21 +1,16 @@
+/* ==========================================================================
+   Columns Block – BNP Paribas Fortis Design
+   ========================================================================== */
 
+/* --- Container --- */
 .columns-wrapper {
   box-sizing: border-box;
 }
-.columns-wrapper .columns {
-  box-sizing: border-box;
-}
-.columns-wrapper .columns .columns-row {
-  box-sizing: border-box;
-}
 
+/* --- Base columns layout --- */
 .columns > div {
   display: flex;
   flex-direction: column;
-}
-
-.columns img {
-  width: 100%;
 }
 
 .columns > div > div {
@@ -26,13 +21,17 @@
   order: 0;
 }
 
-.columns > div > .columns-img-col img {
+.columns img {
+  width: 100%;
   display: block;
-  object-fit: cover;
-  object-position: center;
-  max-height: 500px;
 }
 
+.columns > div > .columns-img-col img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* --- Video support --- */
 .columns .columns-video-col {
   order: 0;
 }
@@ -42,11 +41,107 @@
   width: 100%;
 }
 
+/* --- Promo card style (2-col side-by-side cards) --- */
+.columns.columns-2-cols > .columns-row {
+  display: flex;
+  gap: 24px;
+}
 
-@media (width >= 900px) {
+.columns.columns-2-cols > .columns-row > div {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* Images in promo-style columns */
+.columns.columns-2-cols .columns-img-col {
+  border-radius: var(--border-radius-m) var(--border-radius-m) 0 0;
+}
+
+.columns.columns-2-cols .columns-img-col img {
+  border-radius: var(--border-radius-m) var(--border-radius-m) 0 0;
+  max-height: 300px;
+}
+
+/* --- Typography inside columns --- */
+.columns h2 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+  margin: 24px 24px 8px;
+  color: var(--text-color);
+}
+
+.columns h3 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+  margin: 0 0 12px;
+  color: var(--text-color);
+}
+
+.columns p {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0 24px 24px;
+  color: var(--text-color);
+}
+
+/* --- Links / CTAs inside columns --- */
+.columns a {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.25s ease;
+}
+
+.columns a:hover {
+  color: var(--brand-primary-hover);
+}
+
+.columns .button-container a.button {
+  background-color: var(--brand-primary);
+  color: var(--color-white);
+  border: 1px solid var(--brand-primary);
+  border-radius: var(--button-border-radius);
+  padding: 8px 16px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.25s ease;
+}
+
+.columns .button-container a.button:hover {
+  background-color: var(--brand-primary-hover);
+  border-color: var(--brand-primary-hover);
+}
+
+/* --- Content padding when not image column --- */
+.columns.columns-2-cols > .columns-row > div:not(.columns-img-col) {
+  padding: 24px;
+}
+
+/* Lists inside columns */
+.columns ul {
+  margin: 0 0 16px;
+  padding-left: 20px;
+}
+
+.columns li {
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+/* --- Desktop layout --- */
+@media (min-width: 900px) {
   .columns > div {
     align-items: center;
-    flex-direction: unset;
+    flex-direction: row;
     gap: 24px;
   }
 
@@ -54,43 +149,32 @@
     flex: 1;
     order: unset;
   }
+
+  .columns.columns-2-cols > .columns-row > div {
+    min-height: 200px;
+  }
 }
 
-
-
-
-/* Responsive Styles */
-@media (width < 1024px) {
-  .columns-container .columns-wrapper {
-    padding: 0 5%;
+/* --- Tablet --- */
+@media (max-width: 1023px) {
+  .columns.columns-2-cols > .columns-row {
+    gap: 16px;
   }
-  .columns-container .columns-wrapper .columns {
-    display: block;
-  }
-  .columns-container .columns-wrapper .columns .columns-row {
-    display: flex;
+}
+
+/* --- Mobile --- */
+@media (max-width: 767px) {
+  .columns.columns-2-cols > .columns-row {
     flex-direction: column;
-    width: 100%;
-    margin: 20px 0;
+    gap: 16px;
   }
-  .columns-container .columns-wrapper .columns .columns-row h1, 
-  .columns-container .columns-wrapper .columns .columns-row h2, 
-  .columns-container .columns-wrapper .columns .columns-row h3, 
-  .columns-container .columns-wrapper .columns .columns-row h4, 
-  .columns-container .columns-wrapper .columns .columns-row h5, 
-  .columns-container .columns-wrapper .columns .columns-row h6 {
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
+
+  .columns h2 {
+    font-size: 16px;
+    margin: 16px 16px 8px;
   }
-  
+
+  .columns p {
+    margin: 0 16px 16px;
+  }
 }
-
-@media (width < 768px) { 
-
-  .columns-container .columns-wrapper {
-    padding: 0 4%;
-  }
-
-}
-
